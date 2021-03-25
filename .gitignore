@@ -1,0 +1,5 @@
+.env
+workspace.code-workspace
+notebooks/models
+notebooks/data/augmented
+notebooks/.ipynb_checkpoints

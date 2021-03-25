@@ -1,0 +1,30 @@
+version: "3.8"
+services:
+
+    jupyter-server:
+        image: dl-jupyter
+        init: true
+        build:
+            context: ./dockerfiles/.
+            dockerfile: jupyter.Dockerfile
+        deploy:
+            resources:
+                reservations:
+                    devices:
+                    - 'driver': 'nvidia'
+                      'capabilities': ['gpu']
+        env_file: ./.env
+        ports:
+            - ${JUPYTER_PORT}:${JUPYTER_PORT}
+        volumes:
+            - ${ROOT_DIR}:/jupyter
+        command:
+            [
+                "jupyter",
+                "notebook",
+                "--ip=*",
+                "--port=${JUPYTER_PORT}",
+                "--allow-root",
+                "--notebook-dir=${JUPYTER_DIR}",
+                '--NotebookApp.token=${JUPYTER_TOKEN}'
+            ]
