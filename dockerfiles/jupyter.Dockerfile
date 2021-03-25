@@ -27,4 +27,6 @@ RUN pip3 install \
     # Hugging Face Transformers
     transformers \
     # Hugging Face Tokenizers
-    tokenizers
+    tokenizers \
+    # Progress bar to track experiments
+    barbar
